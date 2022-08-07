@@ -1,29 +1,96 @@
-// import axios from 'axios';
+ import axios from 'axios';
+
+import { apiResponse,producId} from '../types';
+
+export const  respon= () =>{ //ordenar datos que llegan desde la Api 
+        const urlApi:string="https://api.mercadolibre.com/sites/MLA/search?q=:celulares"; 
+        return  axios.get(urlApi)
+                .then(((prod)  =>{return  prod.data.results  }))  
+                .then((e:apiResponse[]) => e.map(r => {
+                         return{
+                            
+                            category:r.category_id,    
+                            items:[ { 
+                                id:r.id ,
+                                title:r.title,
+                                price:{ 
+                                   currency: r.currency_id,
+                                   amount:Math.trunc(r.price), 
+                                   decimals:r.price % 1
+                                 },
+                            
+                                picture:r.thumbnail,
+                                condition:r.condition,
+                                free_shipping:r.shipping.free_shipping 
+                              }]
+                          } 
+                            
+                }))
+                .then(e => {
+                        return{
+                                author:
+                                {
+                                        name:'Daniel',
+                                        lastname:'Perco'
+                                },
+                                categories:e.map(r=> r.category),
+                                items:e.map(t=>t.items)
+                        }
+                })
+                               
+ }
+
+ export async function responId  (id:string)  {  //devuelve el id + detalle
+        
+        let urlId1=`https://api.mercadolibre.com/items/${id}`;
+        let url2=`https://api.mercadolibre.com/items/${id}/description`
+        const resp= await 
+                axios.all([axios.get(urlId1),
+                          axios. get(url2) ])
+                     .then(axios.spread((data1,data2):producId=>
+                        { 
+                        return {  
+                                
+                                item:{
+                                       id: data1.data.id,
+                                       title:data1.data.title,
+                                       price: {
+                                       currency: data1.data.currency_id,
+                                       amount:data1.data.price,
+                                       decimals :data1.data.price % 1
+                                      },
+                                      picture :data1.data.thumbnail,
+                                      condition : data1.data.condition,
+                                      free_shipping:data1.data.shipping.free_shipping,
+                                      sold_quentity:data1.data.sold_quantity  ,  
+                                      description:data2.data.plain_text
+                                    }           
+                                 } 
+                       
+                         }
+                         
+                         ))
+                         .then(e =>{
+                                return{
+                                        author:
+                                        {
+                                                name:'Daniel',
+                                                lastname:'Perco'
+                                        },
+                                        item:e.item    
+                                }
+                         })
+
+    
+      return resp ;
+    
+     
+}
 
 
-// async function getApiData(){   //traigo los productos desde Mercado Libre
-//     const resp= await axios.get("https://api.mercadolibre.com/sites/MLA/search?q=:celulares")
-//             .then((data)=>{return data;})
-//             .then
-
-        //console.log(resp);
-        // let productData= resp.map((result)=>{
-        //     return{
+       
                 
-        //         categories: result.categories,
-        //         id : result.id,
-        //         title :result.title,
-        //         price:result.price,
-        //         currency: result.prices.currency_id,
-        //         amount:result.prices.amount,
-        //         decimals :result.prices.decimal, 
-        //         picture :result.thumbals,
-        //         condition : result.condition,
-        //         free_shipping:result.free_shipping
+                       
 
-        //     };
-        // });
-        //console.log(pokData);
-//     return productData;   //array con el formato a mostrar  de productos 
+        
 
-// }; 
