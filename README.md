@@ -5,8 +5,8 @@
  
  Backend _  se  ejecuta desde  la carpeta Api , con el comando ' npm run dev '
             el servidor esta sobre el puerto 3001 , se accede  desde cualquier navegador web  al http://localhost:3001/api/items
-           #######,,,,,,, FALTA terminar el tipado y ajustar la logica de busqueda con el front ..##########
-           en api/src/controllers/index  esta  la logica 
+           en api/src/functions/index  se encuentra la logica de los contoladores 
+           en api/src/controllers/index  estan  las funciones controladoras para  las respuestas de las rutas
            en api/src/routes/index  las rutas de los endpoints
            
 Frontend 
