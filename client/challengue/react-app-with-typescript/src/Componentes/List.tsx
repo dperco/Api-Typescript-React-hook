@@ -16,9 +16,6 @@ const List =({prods}:Props)=> {
                  )
         })
     }
-
-
-
    return (
 
     <ul>

@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './App.css';
 import List from './Componentes/List';
-import Form from './Componentes/Form'
-import { Prod, ResponseApi} from './Componentes/types';
+import Form from './Componentes/Form';
+import Detail from './Componentes/Detail'
+import { Prod, ProdDetail} from './Componentes/types';
 import axios from 'axios';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 
@@ -156,14 +158,14 @@ const handleNewProd= (newProd:Prod):void=>{
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-      <h1>productos </h1>
-      <Form  onNewProd= {setProd}   />
-      <List prods= {prods} />
-      
-      </header>
+    <Router>
+    <div className='App' >
+
+      <Route  path='/' element={< Form  onNewProd= {setProd} /> } />
+      <Route  path='/items?search=' element={< List prods= {prods}/> } />
+      {/* <Route  path='/items/:id' element={< Detail detailProd={detailProd}/> } /> */}
     </div>
+    </Router>
   );
 }
 

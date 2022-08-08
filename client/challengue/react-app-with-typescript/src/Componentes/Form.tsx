@@ -85,11 +85,12 @@ const Form =( {onNewProd}:FormProps)=> {
 
     return(
 
-        <div>
-              <form   onSubmit={handleSubmit}>
-              <button type="submit">buscar</button>
-              <button   onClick={handleClear} type="button"  >clear</button>
-              <input   onChange={handleChange}  value={inputValue.id} type='text'name='id'  placeholder="siempre buscando" />
+        <div className="form">
+              <form   onSubmit={handleSubmit} className='form'>
+              
+              <input   onChange={handleChange} className='holder'  value={inputValue.id} type='text'name='id'  placeholder="siempre buscando" />
+              <button type="submit"  className="button"></button>
+              {/* <button   onClick={handleClear} type="button"  className="button">clear</button> */}
               </form>
 
         </div>

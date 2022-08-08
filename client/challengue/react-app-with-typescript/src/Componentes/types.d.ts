@@ -28,3 +28,14 @@ export interface Props {  // LIST
                picture:string  
       
          }>
+
+  export interface ProdDetail {
+    detailProd:{
+      id:string,
+      title:string,
+      price:number,
+      currency:string,
+      picture:string,
+      description:string
+     }
+  }
