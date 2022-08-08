@@ -24,7 +24,7 @@ Frontend
         
       -  Lo que seria la parte del manejo de estados ,esta realizado en el archivo Form , la funcion Reducer ,con Hooks.-
         
-        #####  falta realizar  la conexion  con el Backend  ,que se realiza desde el usseEfect  que esta en el Archivo App.tsc ,  para hacer la renderizacion de los productos  y terminar de darle forma  al  CSS de la pagina ##########################
+        #####  conexion  Front - Back realizada ,  falta la  renderizacion de los productos para buscador,detail,listado ##########################
 
 
 
