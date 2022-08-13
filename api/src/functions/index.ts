@@ -3,6 +3,7 @@
 import { apiResponse,producId} from '../types';
 
 export const  respon= () =>{ //ordenar datos que llegan desde la Api 
+        try{ 
         const urlApi:string="https://api.mercadolibre.com/sites/MLA/search?q=:celulares"; 
         return  axios.get(urlApi)
                 .then(((prod)  =>{return  prod.data.results  }))  
@@ -10,9 +11,9 @@ export const  respon= () =>{ //ordenar datos que llegan desde la Api
                          return{
                             
                             category:r.category_id,    
-                            items:[ { 
+                            items:[ {    
                                 id:r.id ,
-                                title:r.title,
+                                title:r.title,   
                                 price:{ 
                                    currency: r.currency_id,
                                    amount:Math.trunc(r.price), 
@@ -37,6 +38,15 @@ export const  respon= () =>{ //ordenar datos que llegan desde la Api
                                 items:e.map(t=>t.items)
                         }
                 })
+          }
+          catch(error){
+
+                
+                
+                  console.log(error)
+        
+             
+          };
                                
  }
 
@@ -62,11 +72,11 @@ export const  respon= () =>{ //ordenar datos que llegan desde la Api
                                       picture :data1.data.thumbnail,
                                       condition : data1.data.condition,
                                       free_shipping:data1.data.shipping.free_shipping,
-                                      sold_quentity:data1.data.sold_quantity  ,  
+                                      sold_quentity:data1.data.sold_quantity,  
                                       description:data2.data.plain_text
                                     }           
                                  } 
-                       
+                          
                          }
                          
                          ))

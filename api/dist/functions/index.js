@@ -15,36 +15,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.responId = exports.respon = void 0;
 const axios_1 = __importDefault(require("axios"));
 const respon = () => {
-    const urlApi = "https://api.mercadolibre.com/sites/MLA/search?q=:celulares";
-    return axios_1.default.get(urlApi)
-        .then(((prod) => { return prod.data.results; }))
-        .then((e) => e.map(r => {
-        return {
-            category: r.category_id,
-            items: [{
-                    id: r.id,
-                    title: r.title,
-                    price: {
-                        currency: r.currency_id,
-                        amount: Math.trunc(r.price),
-                        decimals: r.price % 1
-                    },
-                    picture: r.thumbnail,
-                    condition: r.condition,
-                    free_shipping: r.shipping.free_shipping
-                }]
-        };
-    }))
-        .then(e => {
-        return {
-            author: {
-                name: 'Daniel',
-                lastname: 'Perco'
-            },
-            categories: e.map(r => r.category),
-            items: e.map(t => t.items)
-        };
-    });
+    try {
+        const urlApi = "https://api.mercadolibre.com/sites/MLA/search?q=:celulares";
+        return axios_1.default.get(urlApi)
+            .then(((prod) => { return prod.data.results; }))
+            .then((e) => e.map(r => {
+            return {
+                category: r.category_id,
+                items: [{
+                        id: r.id,
+                        title: r.title,
+                        price: {
+                            currency: r.currency_id,
+                            amount: Math.trunc(r.price),
+                            decimals: r.price % 1
+                        },
+                        picture: r.thumbnail,
+                        condition: r.condition,
+                        free_shipping: r.shipping.free_shipping
+                    }]
+            };
+        }))
+            .then(e => {
+            return {
+                author: {
+                    name: 'Daniel',
+                    lastname: 'Perco'
+                },
+                categories: e.map(r => r.category),
+                items: e.map(t => t.items)
+            };
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+    ;
 };
 exports.respon = respon;
 function responId(id) {

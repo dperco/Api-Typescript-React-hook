@@ -12,7 +12,7 @@ const corsOptions = {
     credentials: true,
     optionSuccessStatus: 200,
 };
-//middleware
+//middleware    
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
