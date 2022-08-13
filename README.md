@@ -24,7 +24,7 @@ Frontend
         
       -  Lo que seria la parte del manejo de estados ,esta realizado en el archivo Form , la funcion Reducer ,con Hooks.-
         
-        #####  conexion  Front - Back realizada ,  falta la  renderizacion de los productos para buscador,detail,listado ##########################
+        #####  conexion  Front - Back realizada  , problemas  de cors  para renderizar  Resolviendo problema ##########################
 
 
 
