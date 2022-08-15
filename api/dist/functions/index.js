@@ -57,36 +57,41 @@ function responId(id) {
     return __awaiter(this, void 0, void 0, function* () {
         let urlId1 = `https://api.mercadolibre.com/items/${id}`;
         let url2 = `https://api.mercadolibre.com/items/${id}/description`;
-        const resp = yield axios_1.default.all([axios_1.default.get(urlId1),
-            axios_1.default.get(url2)])
-            .then(axios_1.default.spread((data1, data2) => {
-            return {
-                item: {
-                    id: data1.data.id,
-                    title: data1.data.title,
-                    price: {
-                        currency: data1.data.currency_id,
-                        amount: data1.data.price,
-                        decimals: data1.data.price % 1
+        try {
+            const resp = yield axios_1.default.all([axios_1.default.get(urlId1),
+                axios_1.default.get(url2)])
+                .then(axios_1.default.spread((data1, data2) => {
+                return {
+                    item: {
+                        id: data1.data.id,
+                        title: data1.data.title,
+                        price: {
+                            currency: data1.data.currency_id,
+                            amount: data1.data.price,
+                            decimals: data1.data.price % 1
+                        },
+                        picture: data1.data.thumbnail,
+                        condition: data1.data.condition,
+                        free_shipping: data1.data.shipping.free_shipping,
+                        sold_quentity: data1.data.sold_quantity,
+                        description: data2.data.plain_text
+                    }
+                };
+            }))
+                .then(e => {
+                return {
+                    author: {
+                        name: 'Daniel',
+                        lastname: 'Perco'
                     },
-                    picture: data1.data.thumbnail,
-                    condition: data1.data.condition,
-                    free_shipping: data1.data.shipping.free_shipping,
-                    sold_quentity: data1.data.sold_quantity,
-                    description: data2.data.plain_text
-                }
-            };
-        }))
-            .then(e => {
-            return {
-                author: {
-                    name: 'Daniel',
-                    lastname: 'Perco'
-                },
-                item: e.item
-            };
-        });
-        return resp;
+                    item: e.item
+                };
+            });
+            return resp;
+        }
+        catch (error) {
+            console.log(error);
+        }
     });
 }
 exports.responId = responId;

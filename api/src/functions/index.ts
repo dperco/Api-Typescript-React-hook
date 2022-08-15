@@ -2,19 +2,18 @@
 
 import { apiResponse,producId} from '../types';
 
-export const  respon= () =>{ //ordenar datos que llegan desde la Api 
+export const  respon=  () =>{ //ordenar datos que llegan desde la Api 
         try{ 
         const urlApi:string="https://api.mercadolibre.com/sites/MLA/search?q=:celulares"; 
         return  axios.get(urlApi)
                 .then(((prod)  =>{return  prod.data.results  }))  
                 .then((e:apiResponse[]) => e.map(r => {
-                         return{
-                            
+                         return{                 
                             category:r.category_id,    
                             items:[ {    
-                                id:r.id ,
-                                title:r.title,   
-                                price:{ 
+                                id:r.id,
+                                title:r.title ,         
+                                price:{       
                                    currency: r.currency_id,
                                    amount:Math.trunc(r.price), 
                                    decimals:r.price % 1
@@ -54,6 +53,7 @@ export const  respon= () =>{ //ordenar datos que llegan desde la Api
         
         let urlId1=`https://api.mercadolibre.com/items/${id}`;
         let url2=`https://api.mercadolibre.com/items/${id}/description`
+     try{ 
         const resp= await 
                 axios.all([axios.get(urlId1),
                           axios. get(url2) ])
@@ -93,12 +93,12 @@ export const  respon= () =>{ //ordenar datos que llegan desde la Api
 
     
       return resp ;
-    
+     }catch(error){console.log(error)}
      
 }
 
 
-       
+         
                 
                        
 

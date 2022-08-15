@@ -13,12 +13,13 @@ const List = ({subs}:Props) =>{
         <ul>
         {
           subs.map(sub =>{
-            return(
+            return(  
               <li key={sub.id} >
                 <img src={sub.picture} alt={`avatar ${sub.id}` } />
                 <h3> {sub.title} </h3>
                 <h4>{sub.price.amount} (<small> {sub.price.currency} </small>) </h4>   
               </li>
+               
             )
           } )
         }
