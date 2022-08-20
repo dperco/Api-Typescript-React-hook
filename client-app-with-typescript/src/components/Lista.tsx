@@ -1,6 +1,6 @@
 import React from "react"
 import {Sub} from '../types.d'
-
+import '../components/List.css'
 
 interface Props{
     subs: Array< Sub >   
@@ -9,21 +9,24 @@ interface Props{
 const List = ({subs}:Props) =>{
 
     return(
-
+       
         <ul>
         {
           subs.map(sub =>{
             return(  
+              <div className="prod">
               <li key={sub.id} >
-                <img src={sub.picture} alt={`avatar ${sub.id}` } />
-                <h3> {sub.title} </h3>
-                <h4>{sub.price.amount} (<small> {sub.price.currency} </small>) </h4>   
+                <img  className="prod"   src={sub.picture} alt=''/>
+                <p>${sub.price.amount}  </p>
+                <p> {sub.title} </p>
+             
               </li>
-               
+              </div> 
             )
           } )
         }
       </ul>
+    
     )
 
 }

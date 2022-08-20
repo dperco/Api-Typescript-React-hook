@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import {Sub}  from '../types.d'
 import { Dispatch} from 'redux'
+import '../components/Form.css'
 interface FormState {
    inputvalue:Sub
 }
@@ -73,18 +74,17 @@ const handleSubmit = ( e : React.ChangeEvent<HTMLFormElement>)=> {
 
     
     return (
-        <div>
-            <form  onSubmit={handleSubmit}>
-          
-            <input    onChange={handleChange} value={inputValue.picture} type={'text'}  name='buscar' placeholder="Siempre buscando productos"/>
-            <br></br>
-            <button >Buscar</button>
-            <button onClick={handleClear}>Clear</button>
-
-
+        <div  className="form">
+            <form  onSubmit={handleSubmit}> 
+            <div className="input">
+            <input  className="input"  onChange={handleChange} value={inputValue.title} type={'text'}  name='buscar' placeholder="Siempre buscando productos"/>
+            </div>
+            <div>
+            <button >Buscar</button> 
+            </div>
             </form>
-        
         </div>
+        
     )
 }
 
